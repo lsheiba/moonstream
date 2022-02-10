@@ -80,7 +80,7 @@ HOME=/root /usr/local/go/bin/go install github.com/bugout-dev/checkenv@latest
 echo
 echo
 echo -e "${PREFIX_INFO} Retrieving addition deployment parameters"
-HOME=/root AWS_DEFAULT_REGION="${AWS_DEFAULT_REGION}" $HOME/go/bin/checkenv show aws_ssm+Product:moonstream >> "${PARAMETERS_ENV_PATH}"
+AWS_DEFAULT_REGION="${AWS_DEFAULT_REGION}" /root/go/bin/checkenv show aws_ssm+Product:moonstream >> "${PARAMETERS_ENV_PATH}"
 
 echo
 echo
@@ -153,7 +153,7 @@ chmod 644 "${SCRIPT_DIR}/${POLYGON_STATISTICS_SERVICE_FILE}" "${SCRIPT_DIR}/${PO
 cp "${SCRIPT_DIR}/${POLYGON_STATISTICS_SERVICE_FILE}" "/etc/systemd/system/${POLYGON_STATISTICS_SERVICE_FILE}"
 cp "${SCRIPT_DIR}/${POLYGON_STATISTICS_TIMER_FILE}" "/etc/systemd/system/${POLYGON_STATISTICS_TIMER_FILE}"
 systemctl daemon-reload
-systemctl restart "${POLYGON_STATISTICS_TIMER_FILE}"
+systemctl restart --no-block "${POLYGON_STATISTICS_TIMER_FILE}"
 
 # echo
 # echo
